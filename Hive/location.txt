@@ -1,0 +1,5 @@
+CREATE TABLE Crime (ID bigint, CaseNumber String,Date TIMESTAMP,Block String, IUCR String,PrimaryType String, Description String,LocationDescription String,Arrest String,Domestic String, Beat int,District int,Ward int, CommunityArea int,FBICode String, XCoordinate bigint, YCoordinate bigint, Year int,UpdatedOn timestamp, Latitude decimal,Longitude decimal, Location decimal) COMMENT 'Chicago Crime' ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE; 
+
+LOAD DATA INPATH '/Crimes_-_2001_to_present.csv' INTO TABLE Crime;
+
+select locationdescription ,count(*) as co  from crime group by locationdescription order by co desc;  

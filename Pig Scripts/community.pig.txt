@@ -1,0 +1,9 @@
+Data1= LOAD '/home/bokka/Downloads/Crimes.csv' using PigStorage(',') as (ID:long,CaseNumber:chararray,Date:chararray,Block:chararray,IUCR:chararray,PrimaryType:chararray,Description:chararray,LocationDescription:chararray,Arrest:chararray,Domestic:chararray,Beat:int,District:int,ward:int,commuintyArea:int,FBIcode:chararray,Xcordinate:long,Ycordinate:long,year:int,update:chararray,latitude:double,longitude:double,location:chararray);
+Data = LOAD '/home/bokka/Desktop/CommAreas.csv' using PigStorage(',') as (Perimeter: int, Area: int, Comarea:int, Comarea_ID : int, Area_number:int, community:chararray, area_num1:int,shape_area:int,shape_len:int)
+
+
+joined = join Data1 by commuintyArea,Data by area_num1;
+grouped = group joined by community;
+summed = foreach grouped generate group as Community, COUNT(joined)as num; 
+sort = order summed by num desc;
+STORE sort into '/home/bokka/Desktop/commarea';

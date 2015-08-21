@@ -1,0 +1,9 @@
+Dataset= LOAD '/home/bokka/Downloads/Crimes.csv' using PigStorage(',') as (ID:long,CaseNumber:chararray,Date:chararray,Block:chararray,IUCR:chararray,PrimaryType:chararray,Description:chararray,LocationDescription:chararray,Arrest:chararray,Domestic:chararray,Beat:int,District:int,ward:int,commuintyArea:int,FBIcode:chararray,Xcordinate:long,Ycordinate:long,year:int,update:chararray,latitude:double,longitude:double,location:chararray);
+
+B = group Dataset by LocationDescription;
+
+C = foreach B generate group, COUNT(Data) as count;
+
+D = order C by count desc;
+
+Store D into '\Desktop\PrimaryType';

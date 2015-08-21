@@ -1,0 +1,1 @@
+select arrest,count(*) from crime group by arrest order by count(*) desc limit 10;

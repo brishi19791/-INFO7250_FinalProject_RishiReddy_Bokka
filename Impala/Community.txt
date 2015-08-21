@@ -1,0 +1,1 @@
+select CommunityArea, count(*) from Crime join Community on (Crime.CommunityArea = Community.area_num) group by communityarea order by count(*) desc

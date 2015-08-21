@@ -1,0 +1,1 @@
+select primarytype, count(*) from crime group by primarytype order by count(*) desc limit 10;

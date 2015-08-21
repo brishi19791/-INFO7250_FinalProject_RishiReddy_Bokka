@@ -1,0 +1,1 @@
+select year,count(*) from crime group by year order by count(*) desc limit 10;

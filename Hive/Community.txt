@@ -1,0 +1,11 @@
+CREATE TABLE Community (perimeter int, Area int,Commarea int,Comarea_id int, Area_num int,Community String, Area_num1 int,Shape_area int,Shape_len int) COMMENT 'Chicago Community' ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE; 
+
+CREATE TABLE Crime (ID bigint, CaseNumber String,Date TIMESTAMP,Block String, IUCR String,PrimaryType String, Description String,LocationDescription String,Arrest String,Domestic String, Beat int,District int,Ward int, CommunityArea int,FBICode String, XCoordinate bigint, YCoordinate bigint, Year int,UpdatedOn timestamp, Latitude decimal,Longitude decimal, Location decimal) COMMENT 'Chicago Crime' ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE; 
+
+
+LOAD DATA INPATH '/Crimes_-_2001_to_present.csv' INTO TABLE Crime;
+
+
+LOAD DATA INPATH '/CommAreas.csv' INTO TABLE Community;
+
+select community, count(*) as co from Crime join Community on (Crime.CommunityArea = Community.area_num) group by community order by co desc;

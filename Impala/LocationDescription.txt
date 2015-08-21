@@ -1,0 +1,1 @@
+select locationdescription,count(*) from crime group by locationdescription order by count(*) desc limit 10;
